@@ -35,8 +35,17 @@ class PolyTreeNode
         @parent.children.delete(child_node)
     end
 
-    def dfs(target_value)
-        
+    def dfs(target)
+
+        return self if self == target
+
+        @children.each do | child |
+
+            return self if dfs(child) == target
+
+        end
+
+        nil
     end
 
 end
