@@ -1,5 +1,5 @@
-
 require "byebug"
+
 class PolyTreeNode
 
     attr_accessor :parent, :children, :value
@@ -11,37 +11,33 @@ class PolyTreeNode
     end
 
     def parent=(parent) 
-        @parent = parent
-
-    end 
-end
-
-
-
-
-# account for old parent is not nil and new parent is nil 
-
-def parent=(parent) 
     
     # delete myself parents list of children
     # account for old parent is nil and new parent is not nil
-    self.parent.children.delete(self) if self.parent != nil 
+    @parent.children.delete(self) if @parent != nil 
     
-    debugger
     @parent = parent
 
     # assign a parent and assign our(new) parents children
-
-    if self.parent != nil
-        if !@parent.children.include?(self)
-            
+    # account for old parent is not nil and new parent is nil 
+        if @parent != nil
+            #if !@parent.children.include?(self)
+                
             @parent.children << self # same as self.parent .... or parent
-
-            p @parent.children
         end
     end
 
+    def add_child(child_node)
+        @parent.children << child_node
+    end
+
+    def remove_child(child_node)
+        @parent.children.delete(child_node)
+    end
+
+    def dfs(target_value)
+        
+    end
 
 end
-p s = PolyTreeNode.new(3)
 
