@@ -51,18 +51,51 @@ class PolyTreeNode
 
     end
 
-    # def dfs(target)
+    def dfs(target_value)
+        # stack starts with root node (NOT AN ARRAY)
+        # return node if node is the target, the base case
+        return self if self.value == target_value
 
-    #     return self if self == target
+        # In order to move to the leaf nodes as fast as possible,
+        # we need to call dfs to travel downwards on the children
+        # until there are no more children to iterate through
 
-    #     @children.each do | child |
+        # iterate through node's children
+        self.children.each do |child|
+            # call DFS on each child node
+            result = child.dfs(target_value)
+            if result != nil # if result is not nil, return node
+                return result # we return result (instead of child instance, because we need to also call DFS on the children, to keep the search going deeper to the bottom of the tree)
+            end
+        end    
+            # (this means we found the node, and we want to continue
+            # returning this node up the stack frames)
+                # We DONT want to return nil because that could reeturn
+                # too early when we didn't check other nodes yet
 
-    #         return self if dfs(child) == target
+        # return nil if target is not found
+        nil
+    end
 
-    #     end
+    def bfs(target_value)
+        # create queue
+        # add root node into our queue
+        queue = [self]
 
-    #     nil
-    # end
+        # loop through the queue until it is empty
+        until queue.empty?
+            # remove the first node from the queue (dequeue)
+            node = queue.shift
+            # check if removed node is the target
+            if target_value == node.value
+            # if this node is the target, return node
+                return node
+            # if this node is not the target, add node's children into queue
+            end
+        end
+            
+    # return nil if we made it through the entire tree without finding a target
+    end
 
 end
 
