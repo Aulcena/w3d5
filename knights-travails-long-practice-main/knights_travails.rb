@@ -3,6 +3,24 @@ require_relative "./tree_node.rb"
 class KnightPathFinder
     attr_accessor :children, :parent, :root_node
 
+    def self.valid_moves(pos)
+        moves = [ [1,-2], [2,-1], [2,1], [1,2], [-1,2], [-2,1], [-2,-1], [-1,-2] ]
+        new_pos = []
+
+        moves.each do |move|
+
+            if sum_array(pos, move) # example: [1, -2]
+            new_pos << sum_array(pos, move) 
+        end
+    end
+
+    def sum_array(arr_1, arr_2)
+        new_arr = []
+        new_arr << arr_1[0] + arr_2[0]
+        new_arr << arr_1[1] + arr_2[1]
+        new_arr
+    end 
+
     def initialize
         @children = []
         @parent = nil
