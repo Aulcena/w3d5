@@ -90,11 +90,14 @@ class PolyTreeNode
             if target_value == node.value
             # if this node is the target, return node
                 return node
-            # if this node is not the target, add node's children into queue
+            # if this node is not the target, add node's children into 
+            else
+                queue += node.children
             end
         end
             
     # return nil if we made it through the entire tree without finding a target
+        nil
     end
 
 end
