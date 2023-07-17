@@ -10,7 +10,18 @@ class KnightPathFinder
         build_move_tree
     end
 
+
+
     def build_move_tree
+        #create queue to be populated by children
+        queue = [self.root_node]
+
+        #find new positions(children) to move to(moves that are valid and not considered)
+        until queue.empty?
+        #initialize new positions as instance variables and add them to the queue.
+        
+        end
+
 
     end
 end
