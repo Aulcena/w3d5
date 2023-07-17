@@ -28,25 +28,41 @@ class PolyTreeNode
     end
 
     def add_child(child_node)
-        @parent.children << child_node
+
+        child_node.parent=(self)
+        
     end
 
     def remove_child(child_node)
-        @parent.children.delete(child_node)
-    end
 
-    def dfs(target)
+        if !self.children.include?(child_node)
 
-        return self if self == target
+            raise "#{child_node} is not a child, therefore it can not be removed"
 
-        @children.each do | child |
+        else
 
-            return self if dfs(child) == target
+            self.children.delete(child_node)
 
         end
 
-        nil
+        child_node.parent = nil
+
+       
+
     end
+
+    # def dfs(target)
+
+    #     return self if self == target
+
+    #     @children.each do | child |
+
+    #         return self if dfs(child) == target
+
+    #     end
+
+    #     nil
+    # end
 
 end
 
